@@ -31,7 +31,7 @@ import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.mapred.JobConf;
 import org.apache.nutch.indexer.NutchDocument;
 import org.apache.nutch.indexer.IndexWriter;
-import org.elasticsearch.ElasticSearchException;
+import org.elasticsearch.ElasticsearchException;
 import org.elasticsearch.action.ListenableActionFuture;
 import org.elasticsearch.action.bulk.BulkItemResponse;
 import org.elasticsearch.action.bulk.BulkRequestBuilder;
@@ -165,13 +165,13 @@ public class ElasticIndexWriter implements IndexWriter {
       builder.setType("doc");
       builder.setId(key);
       builder.execute().actionGet();
-    }catch(ElasticSearchException e)
+    }catch(ElasticsearchException e)
     {
       throw makeIOException(e);
     }
   }
 
-  public static IOException makeIOException(ElasticSearchException e) {
+  public static IOException makeIOException(ElasticsearchException e) {
     final IOException ioe = new IOException();
     ioe.initCause(e);
     return ioe;
