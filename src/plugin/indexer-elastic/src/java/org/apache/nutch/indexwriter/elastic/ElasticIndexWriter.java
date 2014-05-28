@@ -79,7 +79,7 @@ public class ElasticIndexWriter implements IndexWriter {
   public void open(JobConf job, String name) throws IOException {
     clusterName = job.get(ElasticConstants.CLUSTER);
     host = job.get(ElasticConstants.HOST);
-    port = job.getInt(ElasticConstants.PORT, -1);
+    port = job.getInt(ElasticConstants.PORT, 9300);
 
     Builder settingsBuilder = ImmutableSettings.settingsBuilder();
     
